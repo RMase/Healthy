@@ -1,0 +1,48 @@
+<ion-view title="Workout Schedule">
+    <ion-content class="padding">
+        <h1>Workout Schedule</h1>
+
+
+
+        <body ng-app="app" ng-controller="ToDoListCtrl">
+        <ion-pane>
+            <ion-header-bar align-title="left" class="bar-positive">
+                <h1 class="title">Workout Schedule</h1>
+                <div class="buttons">
+                    <button class="button" ng-click="openModal()">+ Add Workout</button>
+                </div>
+            </ion-header-bar>
+            <ion-content>
+                <ion-list>
+                    <ion-item ng-repeat="item in toDoListItems">
+                        {{item.task}}
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-pane>
+        <script id="modal.html" type="text/ng-template">
+            <div class="modal">
+                <div class="bar bar-header bar-calm">
+                    <button class="button" ng-click="closeModal()">back</button>
+                    <h1 class="title">Workout Schedule</h1>
+                </div>
+                <br></br>
+                <br></br>
+                <form ng-submit="AddItem(data)">
+                    <div class="list">
+                        <div class="list list-inset">
+                            <label class="item item-input">
+                                <input type="text" placeholder="CS 704 Rich Internet Applications" ng-model="data.newItem">
+                            </label>
+                        </div>
+                        <button class="button button-block button-positive" type="submit">
+                            + Add Workout
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </script>
+        </body>
+
+    </ion-content>
+</ion-view>
