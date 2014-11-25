@@ -1,48 +1,82 @@
-<ion-view title="Workout Schedule">
-    <ion-content class="padding">
-        <h1>Workout Schedule</h1>
+<ion-view title=" Workout Schedule">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" ng-controller="ToDoListCtrl">
 
-
-
-        <body ng-app="app" ng-controller="ToDoListCtrl">
-        <ion-pane>
-            <ion-header-bar align-title="left" class="bar-positive">
-                <h1 class="title">Workout Schedule</h1>
-                <div class="buttons">
-                    <button class="button" ng-click="openModal()">+ Add Workout</button>
-                </div>
-            </ion-header-bar>
-            <ion-content>
-                <ion-list>
-                    <ion-item ng-repeat="item in toDoListItems">
-                        {{item.task}}
-                    </ion-item>
-                </ion-list>
-            </ion-content>
-        </ion-pane>
-        <script id="modal.html" type="text/ng-template">
-            <div class="modal">
-                <div class="bar bar-header bar-calm">
-                    <button class="button" ng-click="closeModal()">back</button>
-                    <h1 class="title">Workout Schedule</h1>
-                </div>
-                <br></br>
-                <br></br>
-                <form ng-submit="AddItem(data)">
-                    <div class="list">
-                        <div class="list list-inset">
-                            <label class="item item-input">
-                                <input type="text" placeholder="CS 704 Rich Internet Applications" ng-model="data.newItem">
-                            </label>
-                        </div>
-                        <button class="button button-block button-positive" type="submit">
-                            + Add Workout
-                        </button>
-                    </div>
-                </form>
+        <ion-header-bar align-title="center" class="bar-positive">
+            <button class="button button-icon icon ion-ios7-minus-outline"
+                    ng-click="data.showDelete = !data.showDelete;"></button>
+            <h1 class="title"></h1>
+            <div class="buttons">
+                <button class="button icon-left ion-ios7-plus-outline button-stable" ng-click="openModal()"> Add Workout</button>
             </div>
-        </script>
-        </body>
+        </ion-header-bar>
+
+        <ion-list show-delete="data.showDelete">
+
+            <ion-item ng-repeat="item in toDoListItems">
+
+                <p class="schedule">Weights:<br><a class="listitem">{{item.task}}</a></p>
+                <p class="schedule">Cardio:<br><a class="listitem">{{item.task2}}</a></p>
+                <p class="schedule">Core:<br><a class="listitem">{{item.task3}}</a></p>
+                <p class="schedule">Time:<br><a class="listitem">{{item.task4}}</a></p>
+                <p class="schedule">Days of Week:<br><a class="listitem">{{item.task5}}</a></p>
+                <ion-delete-button class="ion-minus-circled"
+                                   ng-click="onItemDelete(item)">
+                </ion-delete-button>
+            </ion-item>
+
+        </ion-list>
 
     </ion-content>
+
+    <script id="modal.html" type="text/ng-template">
+        <div class="modal">
+            <div class="bar bar-header bar-calm">
+                <button class="button" ng-click="closeModal()">back</button>
+                <h1 class="title">Add Your Workout Schedule</h1>
+            </div>
+            <br>
+            <br>
+            <form ng-submit="AddItem(data)">
+                <div class="list">
+                    <div class="list list-inset">
+                        <label class="item item-input" ng-model="data.newItem">
+                            Weights: <input type="text" placeholder="   3 sets bench-press | 5 reps" ng-model="data.newItem">
+                        </label>
+                        <label class="item item-input">
+                            Cardio: <input type="text" placeholder="    30 min Swimming,  15 min Jogging etc." ng-model="data.newItem2">
+                        </label>
+                        <label class="item item-input">
+                            Core: <input type="text" placeholder="  100 sit-ups,  30sec planks etc" ng-model="data.newItem3">
+                        </label>
+                        <label class="item item-input">
+                            Workout Length: <input type="time" placeholder="    9:30 PM" ng-model="data.newItem4">
+                        </label>
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Day of Workout:
+                            </div>
+                            <select ng-model="data.newItem5">
+                                <option selected>Monday</option>
+
+                                <option selected>Tuesday</option>
+                                <option selected>Wednesday</option>
+                                <option selected> Thursday</option>
+                                <option selected>Friday</option>
+                                <option selected>Saturday</option>
+
+                            </select>
+                        </label>
+
+                    </div>
+                    <button class="button button-block button-positive" type="submit">
+                        + Add Workout
+                    </button>
+                </div>
+            </form>
+        </div>
+    </script>
+
 </ion-view>

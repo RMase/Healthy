@@ -5,6 +5,8 @@ angular.module('starter.controllers', [])
 
   }];
 
+
+
 $scope.AddItem = function(data){
 	$scope.toDoListItems.push({task:data.newItem,status:'not done'});
 	 data.newItem = ' ';

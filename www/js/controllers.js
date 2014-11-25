@@ -5,6 +5,14 @@ angular.module('starter.controllers', [])
 
         }];
 
+        $scope.data = {
+            showDelete: false
+        };
+
+        $scope.onItemDelete = function(data) {
+            $scope.toDoListItems.splice($scope.toDoListItems.indexOf(data), 1);
+        };
+
         $scope.AddItem = function(data){
             $scope.toDoListItems.push({task:data.newItem,status:'not done'});
             data.newItem = ' ';
